@@ -5,63 +5,53 @@
     :lazy-validation="lazy"
   >
     <v-text-field
-      v-model="name"
-      :counter="10"
-      :rules="nameRules"
-      label="Name"
+      v-model="title"
+      label="Title"
       required
     />
 
     <v-text-field
-      v-model="email"
-      :rules="emailRules"
-      label="E-mail"
-      required
-    />
-
-    <v-select
-      v-model="select"
-      :items="items"
-      :rules="[v => !!v || 'Item is required']"
-      label="Item"
-      required
-    />
-
-    <v-checkbox
-      v-model="checkbox"
-      :rules="[v => !!v || 'You must agree to continue!']"
-      label="Do you agree?"
+      v-model="text"
+      label="Text"
       required
     />
 
     <v-btn
-      :disabled="!valid"
       color="success"
       class="mr-4"
-      @click="validate"
+      @click="sendData"
     >
-      Validate
+      Submit
     </v-btn>
 
     <v-btn
       color="error"
       class="mr-4"
-      @click="reset"
+      @click="resetData"
     >
       Reset Form
-    </v-btn>
-
-    <v-btn
-      color="warning"
-      @click="resetValidation"
-    >
-      Reset Validation
     </v-btn>
   </v-form>
 </template>
 
 <script>
 export default {
-  name: 'Blogpost'
+  name: 'Blogpost',
+  data () {
+    return {
+      title: '',
+      text: ''
+    }
+  },
+  methods: {
+    sendData () {
+      this.$emit('catchData', this.title, this.text)
+    },
+    resetData () {
+      this.title = ''
+      this.text = ''
+    }
+  }
+
 }
 </script>
