@@ -11,6 +11,7 @@
 
 <script>
 export default {
+  name: "BlogPost"
   props: ['title', 'text']
 }
 </script>
